@@ -5,6 +5,8 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
+				"/Users/mac/Documents/Formation-Clash/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
+				"/Users/mac/Documents/Formation-Clash/Content/__ExternalActors__/TopDown/Lvl_TopDown/7/28/LTFB9VPMDAB5J0UJXH0222.uasset",
 				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/Test_Arena.umap",
 				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
 				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/FormationClash/Enums/E_CharType.uasset",
