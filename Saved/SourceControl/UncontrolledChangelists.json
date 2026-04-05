@@ -5,22 +5,11 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/Blueprints/BP_RangedProjectile.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/AI/BB_Unit.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/AI/BT_Unit.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/Blueprints/BP_BaseUnitAIController.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/Test_Arena.umap",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/Blueprints/BP_Projectile_Default.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/Characters/Projectiles/BP_Projectile_Default.uasset",
-				"/Users/rameshkrishnan/Documents/NEU/Game AI/Project1/Content/FormationClash/Blueprints/BP_Projectile.uasset",
-				"/Users/mac/Documents/Formation-Clash/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
-				"/Users/mac/Documents/Formation-Clash/Content/__ExternalActors__/TopDown/Lvl_TopDown/7/28/LTFB9VPMDAB5J0UJXH0222.uasset",
-				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/Test_Arena.umap",
-				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
-				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/FormationClash/Enums/E_CharType.uasset",
-				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/FormationClash/Enums/E_AttackPattern.uasset",
-				"D:/Anshul's Folder/Important Documents/Northeastern University/Classes/Game AI/Project/Sample_Group_Project/Project1/Content/FormationClash/Blueprints/BP_BaseUnitAIController.uasset"
+				"D:/Project1/Content/Test_Arena.umap",
+				"D:/Project1/Content/FormationClash/AI/BT_Unit.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/WBP_HealthBar.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/M_TeamColor.uasset"
 			]
 		}
 	]

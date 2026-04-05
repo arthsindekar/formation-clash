@@ -49,8 +49,15 @@ public:
     FOnHealthChanged OnHealthChanged;
 
     // --- Functions ---
+    /** Unified attack: melee units deal direct damage, ranged/flying units fire a projectile. Returns true if the attack was executed. */
+    UFUNCTION(BlueprintCallable, Category = "Combat")
+    bool Attack();
+
     UFUNCTION(BlueprintCallable, Category = "Combat")
     void FireProjectile();
+
+    UFUNCTION(BlueprintCallable, Category = "Combat")
+    void MeleeAttack();
 
     UFUNCTION(BlueprintCallable, Category = "Combat")
     void ApplyDamage(float DamageAmount, AActor* DamageInstigator);

@@ -24,6 +24,7 @@ void UCombatComponent::BeginPlay()
             Movement->MaxWalkSpeed = Stats.MovementSpeed;
         }
     }
+
 }
 
 float UCombatComponent::GetHealthPercent() const
@@ -99,13 +100,60 @@ bool UCombatComponent::IsInAttackRange(AActor* Target) const
     return Distance <= Stats.AttackRange;
 }
 
+bool UCombatComponent::Attack()
+{
+    if (!bCanAttack || bIsDead || !CurrentTarget) return false;
+
+    if (!IsInAttackRange(CurrentTarget)) return false;
+
+    if (Stats.CharType == ECharType::Melee)
+    {
+        MeleeAttack();
+    }
+    else
+    {
+        FireProjectile();
+    }
+
+    return true;
+}
+
+void UCombatComponent::MeleeAttack()
+{
+    if (!bCanAttack || bIsDead || !CurrentTarget) return;
+
+    AActor* Owner = GetOwner();
+    if (!Owner) return;
+
+    // Deal direct damage to the target
+    UCombatComponent* TargetCombat = CurrentTarget->FindComponentByClass<UCombatComponent>();
+    if (TargetCombat && !TargetCombat->bIsDead)
+    {
+        TargetCombat->ApplyDamage(Stats.AttackDamage, Owner);
+
+        /*if (GEngine)
+        {
+            GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red,
+                FString::Printf(TEXT("%s melee attacked %s for %.0f base damage"),
+                    *Owner->GetName(), *CurrentTarget->GetName(), Stats.AttackDamage));
+        }*/
+    }
+
+    // Start cooldown
+    bCanAttack = false;
+    GetWorld()->GetTimerManager().SetTimer(
+        CooldownTimerHandle, this,
+        &UCombatComponent::ResetAttackCooldown,
+        Stats.AttackCooldown, false);
+}
+
 void UCombatComponent::FireProjectile()
 {
     if (GEngine)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow,
+        /*GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Yellow,
             FString::Printf(TEXT("FireProjectile called - CanAttack: %d, IsDead: %d, HasTarget: %d, HasClass: %d"),
-                bCanAttack, bIsDead, CurrentTarget != nullptr, ProjectileClass != nullptr));
+                bCanAttack, bIsDead, CurrentTarget != nullptr, ProjectileClass != nullptr));*/
     }
     
     if (!bCanAttack || bIsDead || !CurrentTarget || !ProjectileClass) return;
@@ -127,11 +175,11 @@ void UCombatComponent::FireProjectile()
     
     if (GEngine)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Orange,
+        /*GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Orange,
             FString::Printf(TEXT("Spawning class: %s at location: %s"),
                 *ProjectileClass->GetName(), *SpawnLocation.ToString()));
         UE_LOG(LogTemp, Warning, TEXT("Spawning class: %s at location: %s"),
-    *ProjectileClass->GetName(), *SpawnLocation.ToString());
+    *ProjectileClass->GetName(), *SpawnLocation.ToString());*/
     }
 
     AActor* SpawnedActor = GetWorld()->SpawnActor<AActor>(
@@ -143,26 +191,26 @@ void UCombatComponent::FireProjectile()
         if (Projectile)
         {
             Projectile->SetOwnerUnit(Owner, Stats.AttackDamage);
-            if (GEngine)
+            /*if (GEngine)
             {
                 GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, TEXT("Projectile spawned and cast succeeded!"));
-            }
+            }*/
         }
         else
         {
-            if (GEngine)
+            /*if (GEngine)
             {
                 GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Orange,
                     FString::Printf(TEXT("Spawned but cast failed! Actual class: %s"),
                         *SpawnedActor->GetClass()->GetName()));
-            }
+            }*/
         }
     }
     else
     {
         if (GEngine)
         {
-            GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("Spawn returned null!"));
+            /*GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Red, TEXT("Spawn returned null!"));*/
         }
     }
 
@@ -173,6 +221,7 @@ void UCombatComponent::FireProjectile()
         &UCombatComponent::ResetAttackCooldown,
         Stats.AttackCooldown, false);
 }
+
 
 void UCombatComponent::ResetAttackCooldown()
 {
@@ -220,9 +269,9 @@ AActor* UCombatComponent::FindBestTarget() const
     
     if (GEngine)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Cyan,
+        /*GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Cyan,
             FString::Printf(TEXT("FindBestTarget: Result = %s"),
-                BestTarget ? *BestTarget->GetName() : TEXT("NONE")));
+                BestTarget ? *BestTarget->GetName() : TEXT("NONE")));*/
     }
 
     return BestTarget;

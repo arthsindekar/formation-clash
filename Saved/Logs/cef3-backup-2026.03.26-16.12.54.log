@@ -1,6 +1,0 @@
-[8628:23712:0326/114449.744:WARNING:chrome_main_delegate.cc(745)] This is Chrome version 128.0.6613.138 (not a warning)
-[8628:23712:0326/114449.786:WARNING:account_consistency_mode_manager.cc(77)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
-[7280:12092:0326/114454.987:WARNING:frame_impl.cc(430)] virtual CefFrameImpl::SendProcessMessage sent to detached frame 5-B0E085100409AFC256059AB8BCD2337D will be ignored
-[8628:21452:0326/114503.048:ERROR:file_util.cc(142)] Moving extension from : C:\Users\anshu\AppData\Local\Temp\scoped_dir8628_698358245\CRX_INSTALL to : D:\Anshul's Folder\Important Documents\Northeastern University\Classes\Game AI\Project\Sample_Group_Project\Project1\Saved\webcache_6613\Default\Extensions\Temp\scoped_dir8628_1124813030\CRX_INSTALL failed.
-[8628:23712:0326/114503.317:WARNING:load_error_reporter.cc(72)] Extension error: Could not move extension directory into profile.
-[8628:23712:0326/121254.021:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
