@@ -12,7 +12,19 @@
 				"D:/Project1/Content/FormationClash/AI/BT_Unit.uasset",
 				"D:/Project1/Content/FormationClash/Blueprints/WBP_HealthBar.uasset",
 				"D:/Project1/Content/FormationClash/Blueprints/BP_BaseUnit.uasset",
-				"D:/Project1/Content/FormationClash/Blueprints/M_TeamColor.uasset"
+				"D:/Project1/Content/FormationClash/Blueprints/M_TeamColor.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Flying_AoE.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Flying_Single.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Flying_Team.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Melee_AoE.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Melee_Single.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Melee_Team.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Ranged_AoE.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Ranged_Single.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Ranged_Team.uasset",
+				"D:/Project1/Content/Test_Arena1.umap",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Ranged_Team1.uasset",
+				"D:/Project1/Content/FormationClash/Blueprints/Units/BP_Flying_Team1.uasset"
 			]
 		}
 	]

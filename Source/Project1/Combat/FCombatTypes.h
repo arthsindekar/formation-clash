@@ -43,4 +43,16 @@ struct FUnitStats
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EAttackPattern AttackPattern = EAttackPattern::SingleTarget;
+
+	/** Radius for AoE attacks, centered on the target */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float AoERadius = 300.f;
+
+	/** Number of cells for Team units (ignored for non-Team units) */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (EditCondition = "AttackPattern == EAttackPattern::Team"))
+	int32 CellCount = 5;
+
+	/** If true, stats are auto-configured from CharType + AttackPattern on BeginPlay */
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Auto")
+	bool bUseAutoStats = true;
 };
