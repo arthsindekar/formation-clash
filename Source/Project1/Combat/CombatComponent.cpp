@@ -373,32 +373,35 @@ bool UCombatComponent::Attack()
         EffectiveDamage = CellDamage * CellsAlive;
     }
 
-    switch (Stats.AttackPattern)
+    // Ranged/flying units deal damage via projectile 
+    if (Stats.CharType == ECharType::Melee || !ProjectileClass)
     {
-    case EAttackPattern::SingleTarget:
-        DealDamageToTarget(CurrentTarget);
-        break;
-
-    case EAttackPattern::Team:
-        // All cells attack the current target — damage stacks
-        DealDamageToTarget(CurrentTarget);
-        break;
-
-    case EAttackPattern::AoE:
+        switch (Stats.AttackPattern)
         {
-            TArray<AActor*> Enemies = GetEnemiesInRadius(CurrentTarget->GetActorLocation(), Stats.AoERadius);
-            for (AActor* Enemy : Enemies)
+        case EAttackPattern::SingleTarget:
+            DealDamageToTarget(CurrentTarget);
+            break;
+
+        case EAttackPattern::Team:
+            DealDamageToTarget(CurrentTarget);
+            break;
+
+        case EAttackPattern::AoE:
             {
-                DealDamageToTarget(Enemy);
+                TArray<AActor*> Enemies = GetEnemiesInRadius(CurrentTarget->GetActorLocation(), Stats.AoERadius);
+                for (AActor* Enemy : Enemies)
+                {
+                    DealDamageToTarget(Enemy);
+                }
+                if (GEngine)
+                {
+                    GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Orange,
+                        FString::Printf(TEXT("%s [AoE] hit %d enemies for %.0f each"),
+                            *Owner->GetName(), Enemies.Num(), EffectiveDamage));
+                }
             }
-            if (GEngine)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Orange,
-                    FString::Printf(TEXT("%s [AoE] hit %d enemies for %.0f each"),
-                        *Owner->GetName(), Enemies.Num(), EffectiveDamage));
-            }
+            break;
         }
-        break;
     }
 
     // Fire projectile for ranged/flying units
