@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+
 #include "MyGameModeBase.generated.h"
 
 /**
  * 
  */
 
-USTRUCT(BlueprintType)
+USTRUCT(BlueprintType) 
 struct FEnemySpawnInfo
 {
 	GENERATED_BODY()
@@ -26,9 +27,15 @@ USTRUCT(BlueprintType)
 struct FLevelData
 {
 	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere)
+	FName NameOfLevel;
+	
+	UPROPERTY(EditAnywhere)
+	int LevelNumber;
 
 	UPROPERTY(EditAnywhere)
-	TArray<FEnemySpawnInfo> Enemies;
+	TArray<FEnemySpawnInfo> EnemyLocs;
 };
 
 UCLASS()
@@ -50,7 +57,16 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Levels")
 	TArray<FLevelData> Levels;
 	
+	TQueue<FLevelData> LevelQueue;
+	
+	void OnAllUnitsDead();
+	void SpawnEnemies(FLevelData Level);
+	void NextLevel();
+	void PopulateLevelMap();
+	
 private:
+	int LevelTrack = 0;
 	bool bBattleOver = false;
+	FLevelData CurrentLevel;
 	
 };
