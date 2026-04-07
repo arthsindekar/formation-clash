@@ -56,8 +56,8 @@ void ABaseProjectile::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AActor
     UPrimitiveComponent* OtherComp, int32 OtherBodyIndex,
     bool bFromSweep, const FHitResult& SweepResult)
 {
-    // Ignore self and owner
-    if (!OtherActor || OtherActor == this || OtherActor == InstigatorUnit) return;
+    // Ignore self and any overlap before InstigatorUnit is set
+    if (!OtherActor || OtherActor == this || OtherActor == InstigatorUnit || OtherActor == GetOwner() || !InstigatorUnit) return;
 
     // Check if hit actor has a CombatComponent
     UCombatComponent* OtherCombat = OtherActor->FindComponentByClass<UCombatComponent>();
