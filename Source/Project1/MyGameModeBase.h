@@ -63,7 +63,8 @@ public:
 	void SpawnEnemies(FLevelData Level);
 	bool NextLevel();
 	void PopulateLevelMap();
-	
+	UFUNCTION(BlueprintCallable)
+	void BindDeath(AActor* Unit);
 private:
 	int LevelTrack = 0;
 	bool bBattleOver = false;
