@@ -21,17 +21,21 @@ void AMyGameModeBase::BeginPlay()
 
     for (AActor* Unit : AllUnits)
     {
-        UCombatComponent* Combat = Unit->FindComponentByClass<UCombatComponent>();
-        if (Combat)
-        {
-            Combat->OnUnitDeath.AddDynamic(this, &AMyGameModeBase::OnUnitDead);
-            if (GEngine)
-                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green,
-                    FString::Printf(TEXT("Bound death event for: %s"), *Unit->GetName()));
-        }
+        BindDeath(Unit);
     }
     
     PopulateLevelMap();
+}
+
+void AMyGameModeBase::BindDeath(AActor* Unit)
+{
+     UCombatComponent* Combat = Unit->FindComponentByClass<UCombatComponent>();
+            if (Combat)
+            {
+                Combat->OnUnitDeath.AddDynamic(this, &AMyGameModeBase::OnUnitDead);
+               
+            }
+    
 }
 
 void AMyGameModeBase::PopulateLevelMap()
@@ -56,8 +60,6 @@ void AMyGameModeBase::PopulateLevelMap()
 
 void AMyGameModeBase::OnUnitDead()
 {
-    
-    
     if (!bBattleOver)
     {
         IsBattleOver();
@@ -81,6 +83,7 @@ void AMyGameModeBase::IsBattleOver()
         {
             if (Combat->TeamID == 0) bTeam0Alive = true;
             if (Combat->TeamID == 1) bTeam1Alive = true;
+            
         }
     }
     if (GEngine)
@@ -105,6 +108,7 @@ void AMyGameModeBase::IsBattleOver()
                     {
                         // Lost — replay same level 
                         Text->SetText(FText::FromString("GAME OVER"));
+                        Widget->AddToViewport();
                         NextLevel();
                     }
                     else
@@ -120,7 +124,7 @@ void AMyGameModeBase::IsBattleOver()
                             GetWorld()->GetTimerManager().SetTimer(Handle, [this]()
                             {
                                 AMyGameModeBase::EndPlay(EEndPlayReason::Quit);
-                            }, 2.0f, false);
+                            }, 10.0f, false);
                             
                         }
                         
@@ -183,6 +187,6 @@ bool AMyGameModeBase::NextLevel()
     GetWorld()->GetTimerManager().SetTimer(Handle, [this]()
     {
         UGameplayStatics::OpenLevel(GetWorld(), Levels[LevelTrack].NameOfLevel);
-    }, 2.0f, false);
+    }, 10.0f, false);
     return true;
 }
